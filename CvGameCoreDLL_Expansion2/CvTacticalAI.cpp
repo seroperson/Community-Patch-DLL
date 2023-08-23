@@ -2646,7 +2646,7 @@ bool CvTacticalAI::CheckForEnemiesNearArmy(CvArmyAI* pArmy)
 		return false;
 
 	//make a unique set of enemy units
-	set<CvPlot*> allEnemyPlots;
+	vector<CvPlot*> allEnemyPlots;
 	vector<CvUnit*> vUnitsInitial, vUnitsFinal;
 	CvUnit* pUnit = pArmy->GetFirstUnit();
 	while (pUnit)
@@ -2666,13 +2666,13 @@ bool CvTacticalAI::CheckForEnemiesNearArmy(CvArmyAI* pArmy)
 			//combat units
 			vector<CvUnit*> vAttackers = m_pPlayer->GetPossibleAttackers(*pTestPlot,m_pPlayer->getTeam());
 			for (size_t i = 0; i < vAttackers.size(); i++)
-				allEnemyPlots.insert(vAttackers[i]->plot());
+				allEnemyPlots.push_back(vAttackers[i]->plot());
 		}
 
 		//if the closest city belongs to the enemy, make sure we don't ignore it
 		CvCity* pClosestCity = GC.getGame().GetClosestCityByPlots(pUnit->plot(), NO_PLAYER);
 		if (pClosestCity && m_pPlayer->IsAtWarWith(pClosestCity->getOwner()))
-			allEnemyPlots.insert(pClosestCity->plot());
+			allEnemyPlots.push_back(pClosestCity->plot());
 
 		vUnitsInitial.push_back(pUnit);
 		pUnit = pArmy->GetNextUnit(pUnit);
@@ -2685,7 +2685,7 @@ bool CvTacticalAI::CheckForEnemiesNearArmy(CvArmyAI* pArmy)
 	{
 		CvUnit* pOurUnit = vUnitsInitial[i];
 		int iMinDistForThisUnit = INT_MAX;
-		for (set<CvPlot*>::iterator it = allEnemyPlots.begin(); it != allEnemyPlots.end(); ++it)
+		for (vector<CvPlot*>::iterator it = allEnemyPlots.begin(); it != allEnemyPlots.end(); ++it)
 		{
 			int iDistance = plotDistance(*pOurUnit->plot(), **it);
 			if (pOurUnit->getDomainType() != (*it)->getDomain())

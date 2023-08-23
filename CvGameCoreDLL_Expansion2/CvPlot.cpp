@@ -501,7 +501,7 @@ void CvPlot::updateFog(bool bDefer)
 	}
 	else
 	{
-		GC.getMap().deferredFogPlots().insert(this);
+		GC.getMap().deferredFogPlots().push_back(this);
 	}
 }
 
