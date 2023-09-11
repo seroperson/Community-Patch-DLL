@@ -956,17 +956,15 @@ class CvTactPosStorage
 public:
 	CvTactPosStorage(int iPreallocationSize) : iCount(0), iSize(iPreallocationSize), aPositions(new CvTacticalPosition[iPreallocationSize]) {}
 	~CvTactPosStorage() { delete[] aPositions; }
-	void reset() { iCount = 0; attackCache.clear(); }
+	void reset() { iCount = 0; }
 	int getSizeLimit() const { return iSize; }
 	CvTacticalPosition* peekNext() {	return (iCount < iSize) ? aPositions + iCount : NULL;	}
 	int consumeOne() { return iCount++; }
-	CAttackCache& getCache() { return attackCache; }
 
 protected:
 	int iSize; //how many do we have
 	int iCount; //how many are currently in use
 	CvTacticalPosition* aPositions; //preallocated block of N positions
-	CAttackCache attackCache; //filled on demand
 
 private:
 	//hide copy constructor and assignment operator
