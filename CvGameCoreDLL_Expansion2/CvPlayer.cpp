@@ -10742,7 +10742,7 @@ void CvPlayer::SetDangerPlotsDirty()
 }
 
 //	--------------------------------------------------------------------------------
-bool CvPlayer::isHuman() const
+inline bool CvPlayer::isHuman() const
 {
 	if(GetID() == NO_PLAYER)
 	{

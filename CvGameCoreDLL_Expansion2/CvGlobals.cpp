@@ -3494,7 +3494,7 @@ CvBuildingClassInfo* CvGlobals::getBuildingClassInfo(BuildingClassTypes eBuildin
 		return NULL;
 }
 
-int CvGlobals::getNumBuildingInfos()
+inline int CvGlobals::getNumBuildingInfos()
 {
 	return m_pBuildings->GetNumBuildings();
 }
@@ -3504,7 +3504,7 @@ std::vector<CvBuildingEntry*>& CvGlobals::getBuildingInfo()
 	return m_pBuildings->GetBuildingEntries();
 }
 
-CvBuildingEntry* CvGlobals::getBuildingInfo(BuildingTypes eBuildingNum)
+inline CvBuildingEntry* CvGlobals::getBuildingInfo(BuildingTypes eBuildingNum)
 {
 	CvAssert(eBuildingNum > -1);
 	CvAssert(eBuildingNum < GC.getNumBuildingInfos());

@@ -13588,7 +13588,7 @@ int CvPlot::countNumAirUnits(TeamTypes eTeam, bool bNoSuicide) const
 }
 
 //	--------------------------------------------------------------------------------
-int CvPlot::GetPlotIndex() const
+inline int CvPlot::GetPlotIndex() const
 {
 	return m_iPlotIndex;
 }
